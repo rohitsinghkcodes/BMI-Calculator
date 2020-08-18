@@ -5,13 +5,15 @@ import 'ReusableCard.dart';
 
 const bootomContHeight = 80.0;
 //Color1: app container color
-const color1 = Color(0xFF1D1E33);
+const color1 = Color(0xFF303030);
 //Color2: bottom container color/active card indicator color
-const color2 = Colors.teal;
+const color2 = Color(0xFFFF1744);
 //Color2: active color for male
 const color3 = Colors.blue;
 //Color2: active color for female
 const color4 = Color(0xFFEB1555);
+
+enum GengerSelection { male, female }
 
 class InputPage extends StatefulWidget {
   @override
@@ -19,28 +21,8 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  Color malecardcolor = color1;
-  Color femalecardcolor = color1;
-
-//1:male    2:female
-  void updateCardColor(int genNo) {
-    if (genNo == 1) {
-      if (malecardcolor == color1) {
-        femalecardcolor = color1;
-        malecardcolor = color3;
-      } else {
-        malecardcolor = color1;
-      }
-    }
-    if (genNo == 2) {
-      if (femalecardcolor == color1) {
-        malecardcolor = color1;
-        femalecardcolor = color4;
-      } else {
-        femalecardcolor = color1;
-      }
-    }
-  }
+  
+  GengerSelection gengerSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -57,11 +39,11 @@ class _InputPageState extends State<InputPage> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
-                        updateCardColor(1);
+                        gengerSelected = GengerSelection.male;
                       });
                     },
                     child: ReusableCard(
-                      colorSelected: malecardcolor,
+                      colorSelected: gengerSelected == GengerSelection.male ? color3 : color1,
                       cardChild: IconContent(
                         genicon: FontAwesomeIcons.mars,
                         gender: 'MALE',
@@ -73,11 +55,11 @@ class _InputPageState extends State<InputPage> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
-                        updateCardColor(2);
+                        gengerSelected = GengerSelection.female;
                       });
                     },
                     child: ReusableCard(
-                      colorSelected: femalecardcolor,
+                      colorSelected: gengerSelected == GengerSelection.female ? color2 : color1,
                       cardChild: IconContent(
                         genicon: FontAwesomeIcons.venus,
                         gender: 'FEMALE',
@@ -98,8 +80,11 @@ class _InputPageState extends State<InputPage> {
             ),
           ),
           Container(
-            color: color2,
-            margin: EdgeInsets.only(top: 10.0),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10.0),
+              color: color2,
+            ),
+            margin: EdgeInsets.all(15.0),
             width: double.infinity,
             height: bootomContHeight,
             child: Center(
