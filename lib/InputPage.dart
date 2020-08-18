@@ -1,4 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'IconContent.dart';
+import 'ReusableCard.dart';
+
+const bootomContHeight = 80.0;
+//Color1: app container color
+const color1 = Color(0xFF1D1E33);
+//Color2: bottom container color
+const color2 = Color(0xFFEB1555);
 
 class InputPage extends StatefulWidget {
   @override
@@ -17,53 +26,45 @@ class _InputPageState extends State<InputPage> {
           Expanded(
             child: Row(
               children: <Widget>[
-                Expanded(
-                  child: Container(
-                    margin: EdgeInsets.all(15.0),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.0),
-                        color: Color(0xFF1D1E33)),
+                ReusableCard(
+                  colorSelected: color1,
+                  cardChild: IconContent(
+                    genicon: FontAwesomeIcons.mars,
+                    gender: 'MALE',
                   ),
                 ),
-                Expanded(
-                  child: Container(
-                    margin: EdgeInsets.all(15.0),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.0),
-                        color: Color(0xFF1D1E33)),
+                ReusableCard(
+                  colorSelected: color1,
+                  cardChild: IconContent(
+                    genicon: FontAwesomeIcons.venus,
+                    gender: 'FEMALE',
                   ),
                 ),
               ],
             ),
           ),
-          Expanded(
-            child: Container(
-              margin: EdgeInsets.all(15.0),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.0),
-                  color: Color(0xFF1D1E33)),
-            ),
-          ),
+          ReusableCard(colorSelected: color1),
           Expanded(
             child: Row(
               children: <Widget>[
-                Expanded(
-                  child: Container(
-                    margin: EdgeInsets.all(15.0),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.0),
-                        color: Color(0xFF1D1E33)),
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    margin: EdgeInsets.all(15.0),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.0),
-                        color: Color(0xFF1D1E33)),
-                  ),
-                ),
+                ReusableCard(colorSelected: color1),
+                ReusableCard(colorSelected: color1),
               ],
+            ),
+          ),
+          Container(
+            color: color2,
+            margin: EdgeInsets.only(top: 10.0),
+            width: double.infinity,
+            height: bootomContHeight,
+            child: Center(
+              child: Text(
+                'CALCULATE',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 25.0,
+                ),
+              ),
             ),
           ),
         ],
