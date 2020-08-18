@@ -11,14 +11,15 @@ class IconContent extends StatelessWidget {
       children: <Widget>[
         Icon(
           genicon,
-          size: 150.0,
+          size: 95.0,
+          //color: Colors.white,
         ),
         SizedBox(height: 15.0),
         Text(
           gender,
           style: TextStyle(
-            fontSize: 18.0,
-            color: Color(0xFF8D8E98),
+            fontSize: 15.0,
+            color: Colors.white,
           ),
         )
       ],
