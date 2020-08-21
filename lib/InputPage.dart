@@ -4,6 +4,7 @@ import 'IconContent.dart';
 import 'ReusableCard.dart';
 import 'Constants.dart';
 import 'result.dart';
+import 'calculatorBrain.dart';
 
 //Enumeration function
 enum GengerSelection { male, female }
@@ -182,6 +183,9 @@ class _InputPageState extends State<InputPage> {
                               onpressed: () {
                                 setState(() {
                                   weight--;
+                                  if (weight < 0) {
+                                    weight = 0;
+                                  }
                                 });
                               },
                             ),
@@ -230,6 +234,9 @@ class _InputPageState extends State<InputPage> {
                               onpressed: () {
                                 setState(() {
                                   age--;
+                                  if (age < 0) {
+                                    age = 0;
+                                  }
                                 });
                               },
                             ),
@@ -257,8 +264,17 @@ class _InputPageState extends State<InputPage> {
           //Calculate Button
           GestureDetector(
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => finalPage()));
+              CalculatorBRain calc = CalculatorBRain(height, weight);
+
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => finalPage(
+                          bmiResult: calc.calculateBMI(),
+                          resultText: calc.getResult(),
+                          interpretation: calc.getInterpretation(),
+                        )),
+              );
             },
             child: Container(
               decoration: boxDecoration,
