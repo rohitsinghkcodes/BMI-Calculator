@@ -11,6 +11,10 @@ const color2 = Color(0xFFFF1744);
 //Calculate button toogling color
 const color6 = color2;
 const color5 = color3;
+
+const colortanns6 = Color(0x29FF1744);
+const colortrans5 = Color(0x290D47A1);
+
 //Card text style
 const kLabeltextStyle = TextStyle(
   fontSize: 15.0,
@@ -21,4 +25,5 @@ const kLabeltextStyle = TextStyle(
 const kChoseninput = TextStyle(
   fontSize: 50.0,
   fontWeight: FontWeight.w900,
+  color: Colors.black,
 );
